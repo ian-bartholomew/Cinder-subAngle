@@ -40,8 +40,8 @@
 		A7BA66DE07E74BF3A7D99E53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D025F139187D3ECF0028E1FD /* Triangle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Triangle.cpp; path = ../src/Triangle.cpp; sourceTree = "<group>"; };
 		D025F13B187D3EF10028E1FD /* Triangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Triangle.h; path = ../include/Triangle.h; sourceTree = "<group>"; };
-		D097CE7D187E817900C5F4F3 /* TriangleController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TriangleController.cpp; sourceTree = "<group>"; };
-		D097CE7F187E818C00C5F4F3 /* TriangleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TriangleController.h; sourceTree = "<group>"; };
+		D097CE7D187E817900C5F4F3 /* TriangleController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TriangleController.cpp; path = ../src/TriangleController.cpp; sourceTree = "<group>"; };
+		D097CE7F187E818C00C5F4F3 /* TriangleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TriangleController.h; path = ../include/TriangleController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
