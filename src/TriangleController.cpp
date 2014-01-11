@@ -44,3 +44,7 @@ void TriangleController::subdivide(){
 void TriangleController::addTriangle(Triangle triangle){
     mTriangles.push_back(triangle);
 }
+
+void TriangleController::clearTriangles(){
+    mTriangles.clear();
+}

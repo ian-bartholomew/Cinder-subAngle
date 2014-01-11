@@ -23,6 +23,7 @@ class TriangleController {
     
     void subdivide();
     void addTriangle(Triangle triangle);
+    void clearTriangles();
     
     std::list<Triangle> mTriangles;
 };

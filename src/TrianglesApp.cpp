@@ -1,5 +1,10 @@
 #include "cinder/app/AppNative.h"
 #include "cinder/gl/gl.h"
+#include "cinder/audio/Io.h"
+#include "cinder/audio/Output.h"
+#include "cinder/audio/FftProcessor.h"
+#include "cinder/audio/PcmBuffer.h"
+
 #include <vector>
 
 #include "Triangle.h"
@@ -13,11 +18,27 @@ class TrianglesApp : public AppNative {
   public:
 	void prepareSettings( Settings *settings );
 	void setup();
-	void mouseDown( MouseEvent event );	
+    void resize();
 	void update();
 	void draw();
     
-    TriangleController mTriangleController;
+    void keyDown( KeyEvent event );
+    void mouseDown( MouseEvent event );
+    
+    void toggleFullscreen();
+    void initTriangles();
+
+    bool                    mFullScreen = false;
+    
+    // Audio
+    audio::TrackRef         mTrack;
+	audio::PcmBuffer32fRef  mPcmBuffer;
+	uint16_t                mBandCount = 32;
+    
+    std::shared_ptr<float>  mFftRef;
+    
+    // Triangles
+    TriangleController      mTriangleController;
     
 };
 
@@ -30,8 +51,55 @@ void TrianglesApp::prepareSettings(Settings *settings)
 
 void TrianglesApp::setup()
 {
-    list<Triangle> tempTriangles;
+    initTriangles();
+}
 
+void TrianglesApp::resize()
+{
+    initTriangles();
+}
+
+void TrianglesApp::update()
+{
+}
+
+void TrianglesApp::draw()
+{
+	// clear out the window with black
+	gl::clear( Color( 0, 0, 0 ) );
+    
+    mTriangleController.draw();
+
+}
+
+void TrianglesApp::mouseDown( MouseEvent event )
+{
+    mTriangleController.subdivide();
+}
+
+void TrianglesApp::keyDown(KeyEvent event){
+    switch( event.getCode() ) {
+        case KeyEvent::KEY_ESCAPE:
+            quit();
+            break;
+        case KeyEvent::KEY_f:
+            toggleFullscreen();
+            break;
+    }
+}
+
+void TrianglesApp::toggleFullscreen(){
+    mFullScreen = !mFullScreen;
+    setFullScreen( mFullScreen );
+    
+    mTriangleController.clearTriangles();
+    
+    resize();
+}
+
+void TrianglesApp::initTriangles(){
+    list<Triangle> tempTriangles;
+    
     Vec2f a,b,c;
     
     // check to make sure that we are drawing a base triangle that will fit in the window
@@ -55,7 +123,7 @@ void TrianglesApp::setup()
         // -60 for inverted triangles
         double s60 = sin(-60 * M_PI / 180.0);
         double c60 = cos(-60 * M_PI / 180.0);
-                
+        
         float x1 = 50;
         float x2 = getWindowWidth() - 50;
         float y1 = 10.0f;
@@ -70,24 +138,6 @@ void TrianglesApp::setup()
     
     mTriangleController.addTriangle(Triangle(a,b,c));
     mTriangleController.subdivide();
-    
-}
-
-void TrianglesApp::mouseDown( MouseEvent event )
-{
-    mTriangleController.subdivide();
-}
-
-void TrianglesApp::update()
-{
-}
-
-void TrianglesApp::draw()
-{
-	// clear out the window with black
-	gl::clear( Color( 0, 0, 0 ) );
-    
-    mTriangleController.draw();
 
 }
 

@@ -9,6 +9,8 @@
 #include "Triangle.h"
 #include "cinder/app/AppBasic.h"
 
+#include "cinder/Rand.h"
+
 Triangle::Triangle(){
     mColor = Color(1,1,1);
     mDecay	= 0.99f;
@@ -19,14 +21,14 @@ Triangle::Triangle(Vec2f _a, Vec2f _b, Vec2f _c) {
     b       = _b;
     c       = _c;
     
-    mColor  = Color(1,1,1);
+    mColor  = Color(Rand::randFloat(0,1), Rand::randFloat(0,1), Rand::randFloat(0,1));
     mDecay	= 0.99f;
     
 }
 
 void Triangle::draw() {
 	glColor4f( mColor );
-    glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
+//    glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
     
     gl::begin(GL_TRIANGLES);
     
