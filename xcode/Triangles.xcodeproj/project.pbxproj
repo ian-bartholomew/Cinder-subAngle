@@ -36,6 +36,7 @@
 		D0EBA43418836A4C009F6313 /* libfftw3f.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0EBA42118836A4C009F6313 /* libfftw3f.a */; };
 		D0EBA43518836A4C009F6313 /* onsetsds.c in Sources */ = {isa = PBXBuildFile; fileRef = D0EBA42318836A4C009F6313 /* onsetsds.c */; };
 		D0EBA43618836A4C009F6313 /* onsetsdshelpers.c in Sources */ = {isa = PBXBuildFile; fileRef = D0EBA42518836A4C009F6313 /* onsetsdshelpers.c */; };
+		D0EBA4381883C816009F6313 /* BeatDetect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0EBA4371883C816009F6313 /* BeatDetect.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +86,7 @@
 		D0EBA42418836A4C009F6313 /* onsetsds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = onsetsds.h; sourceTree = "<group>"; };
 		D0EBA42518836A4C009F6313 /* onsetsdshelpers.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = onsetsdshelpers.c; sourceTree = "<group>"; };
 		D0EBA42618836A4C009F6313 /* onsetsdshelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = onsetsdshelpers.h; sourceTree = "<group>"; };
+		D0EBA4371883C816009F6313 /* BeatDetect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BeatDetect.cpp; path = ../src/BeatDetect.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 		080E96DDFE201D6D7F000001 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				D0EBA4371883C816009F6313 /* BeatDetect.cpp */,
 				25919CEFDD9141A88A0BFF43 /* TrianglesApp.cpp */,
 				D025F139187D3ECF0028E1FD /* Triangle.cpp */,
 				D097CE7D187E817900C5F4F3 /* TriangleController.cpp */,
@@ -394,6 +397,7 @@
 				D0EBA43218836A4C009F6313 /* KissFFT.cpp in Sources */,
 				D0EBA43518836A4C009F6313 /* onsetsds.c in Sources */,
 				D0EBA43018836A4C009F6313 /* kiss_fft.c in Sources */,
+				D0EBA4381883C816009F6313 /* BeatDetect.cpp in Sources */,
 				D0EBA43118836A4C009F6313 /* kiss_fftr.c in Sources */,
 				98B4A6C04AB14843AE7FC3C7 /* TrianglesApp.cpp in Sources */,
 				D025F13A187D3ECF0028E1FD /* Triangle.cpp in Sources */,
