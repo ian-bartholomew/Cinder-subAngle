@@ -13,10 +13,14 @@
 
 TriangleController::TriangleController(){}
 
-void TriangleController::update(){}
+void TriangleController::update(){
+    for( vector<Triangle>::iterator t = mTriangles.begin(); t != mTriangles.end(); ++t ){
+		t->update();
+	}
+}
 
 void TriangleController::draw(){
-    for( list<Triangle>::iterator t = mTriangles.begin(); t != mTriangles.end(); ++t ){
+    for( vector<Triangle>::iterator t = mTriangles.begin(); t != mTriangles.end(); ++t ){
 		t->draw();
 	}
 }
@@ -25,7 +29,7 @@ void TriangleController::subdivide(){
     // make a new list
     list<Triangle> newList;
     // go through the current triangles
-    for( list<Triangle>::iterator t = mTriangles.begin(); t != mTriangles.end(); ++t ){
+    for( vector<Triangle>::iterator t = mTriangles.begin(); t != mTriangles.end(); ++t ){
         // get the new ones
         list<Triangle> newTriangles = t->subdivide();
         // add them to our new list
@@ -51,15 +55,30 @@ void TriangleController::clearTriangles(){
     mTriangles.clear();
 }
 
-void TriangleController::tap(){
-    
-    uint16_t randTriangle = Rand::randInt(0, mTriangles.size() - 1);
-        console() << "--- tapping " << randTriangle << endl;
-    if (mTriangles.size() > randTriangle)
-    {
-        std::list<Triangle>::iterator it = std::next(mTriangles.begin(), randTriangle);
-        it->tap();
-    }
 
-    
+void TriangleController::tap(float amt){
+    uint16_t randTriangle = Rand::randInt(0, mTriangles.size());
+    for( vector<Triangle>::iterator t = std::next(mTriangles.begin(), randTriangle); t != mTriangles.end(); ++t ){
+        if (!t->isActive()){
+            t->tap(amt);
+            break;
+        }
+    }
+}
+
+void TriangleController::colorTap(float amt){
+//    uint16_t randTriangle = Rand::randInt(0, mTriangles.size());
+//    for( vector<Triangle>::iterator t = std::next(mTriangles.begin(), randTriangle); t != mTriangles.end(); ++t ){
+    for( vector<Triangle>::iterator t = mTriangles.begin(); t != mTriangles.end(); ++t ){
+        if (t->isActive()){
+            t->colorTap(amt);
+        }
+    }
+}
+
+void TriangleController::setBrightness(float amt){
+    for( vector<Triangle>::iterator t = mTriangles.begin(); t != mTriangles.end(); ++t ){
+        if (t->isActive())
+            t->setBrightness(amt);
+    }
 }

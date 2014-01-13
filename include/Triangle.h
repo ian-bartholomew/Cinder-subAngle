@@ -21,17 +21,17 @@ class Triangle {
     
     void update();
     void draw();
-    void tap();
+    void tap(float amt = 1.0f);
+    void colorTap(float amt);
+    void setBrightness(float amt);
     bool isActive();
     
     std::list<Triangle> subdivide();
     
   private:
-    ci::Vec2f a;
-    ci::Vec2f b;
-    ci::Vec2f c;
-    
-    ci::Color mColor;
+    ci::Vec2f a, b, c;
+
+    ci::Vec3f mColor; // HSV
     
     float mDecay;
     float mTresh;

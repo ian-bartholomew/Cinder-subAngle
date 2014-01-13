@@ -24,7 +24,9 @@ class TriangleController {
     void subdivide();
     void addTriangle(Triangle triangle);
     void clearTriangles();
-    void tap();
+    void tap(float amt = 1.0f);
+    void colorTap(float amt = 1.0f);
+    void setBrightness(float amt);
     
-    std::list<Triangle> mTriangles;
+    vector<Triangle> mTriangles;
 };

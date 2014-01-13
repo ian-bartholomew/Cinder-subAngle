@@ -41,12 +41,13 @@ class TrianglesApp : public AppNative {
     bool                        bDrawBeat   = false;
     bool                        bDrawParams = false;
     bool                        isOnset     = false;
+    bool                        isOnsetBass = false;
     
     // PARAMS
 	params::InterfaceGlRef      mParams;
     
     // Onset Dection
-    OnsetsDS mOds;
+    OnsetsDS                    mOds, mOdsBase;
     
 	// Audio file
 	ci::audio::SourceRef		mAudioSource;
@@ -56,7 +57,8 @@ class TrianglesApp : public AppNative {
 	// Analyzer
 	KissRef						mFft;
     int32_t                     mDampen = 50; // time to wait between beats
-    long                        timer;
+    long                        timer, timerBass;
+    float                       mAmp;
     
     // Triangles
     TriangleController          mTriangleController;
@@ -108,6 +110,8 @@ void TrianglesApp::resize()
 
 void TrianglesApp::update()
 {
+    mTriangleController.update();
+    
     // Check if track is playing and has a PCM buffer available
 	if ( mTrack->isPlaying() && mTrack->isPcmBuffering() ) {
         
@@ -129,7 +133,20 @@ void TrianglesApp::update()
 					mFft->setData( mBuffer->getInterleavedData()->mData );
 				}
                 
-                isOnset = onsetsds_process(&mOds, mFft->getData());
+                float * freqData = mFft->getAmplitude();
+                int32_t dataSize = mFft->getBinSize();
+                float * fftData = mFft->getData();
+                
+                mAmp = 0;
+                for (int32_t i = 0; i<dataSize; i++){
+                    mAmp += freqData[i];
+                }
+                mAmp /= dataSize;
+                
+                console() << "amp = " << mAmp << endl;
+                
+                isOnset = onsetsds_process(&mOds, fftData);
+                isOnsetBass = onsetsds_process(&mOdsBase, fftData);
                 
 			}
             
@@ -142,6 +159,17 @@ void TrianglesApp::update()
         timer = getCurrentTimeInMillis();
     } else {
         isOnset = false;
+    }
+    
+    if (isOnsetBass && (getCurrentTimeInMillis() - timerBass > mDampen)){
+        mTriangleController.tap(mAmp * 10);
+        timer = getCurrentTimeInMillis();
+    } else {
+        isOnsetBass = false;
+    }
+    
+    if (isOnset && isOnsetBass){
+        mTriangleController.setBrightness(mAmp * 5.0f);
     }
     
 }
@@ -157,6 +185,11 @@ void TrianglesApp::draw()
     if (isOnset && bDrawBeat) {
         gl::color(Color(CM_RGB, 1, 0, 0 ));
         gl::drawSolidCircle(Vec2f(20.0f, getWindowHeight() - 20.0f), 50.0f);
+    }
+    
+    if (isOnsetBass && bDrawBeat) {
+        gl::color(Color(CM_RGB, 1, 0, 0 ));
+        gl::drawSolidCircle(Vec2f(100.0f, getWindowHeight() - 20.0f), 50.0f);
     }
     
     if (bDrawParams)
@@ -194,7 +227,7 @@ void TrianglesApp::keyDown(KeyEvent event){
         case KeyEvent::KEY_SPACE:
             bDrawParams = !bDrawParams;
             break;
-        case KeyEvent::KEY_a:
+        case KeyEvent::KEY_b:
             bDrawBeat = !bDrawBeat;
             break;
     }
@@ -261,17 +294,27 @@ void TrianglesApp::initTriangles(){
 void TrianglesApp::initODF(){
     // There are various types of onset detector available, we must choose one
 //    onsetsds_odf_types odftype = onsetsds_odf_types::ODS_ODF_WPHASE;  // good for bass and low end
-    onsetsds_odf_types odftype = onsetsds_odf_types::ODS_ODF_RCOMPLEX;
+    onsetsds_odf_types odftype = onsetsds_odf_types::ODS_ODF_MAGSUM;
     
     // Allocate contiguous memory using malloc or whatever is reasonable.
-    // FFT size of 512 (@44.1kHz), and a median span of 11.
+    // FFT size of 1024 (@44.1kHz), and a median span of 11.
     float* odsdata = (float*) malloc( onsetsds_memneeded(odftype, 1024, 11) );
     
     // Now initialise the OnsetsDS struct and its associated memory
     onsetsds_init(&mOds, odsdata, onsetsds_fft_types::ODS_FFT_SC3_POLAR, odftype, 1024, 11, 44100.0f);
     
+    onsetsds_odf_types odftypeBass = onsetsds_odf_types::ODS_ODF_WPHASE;
+    
+    // Allocate contiguous memory using malloc or whatever is reasonable.
+    // FFT size of 1024 (@44.1kHz), and a median span of 11.
+    float* odsdataBass = (float*) malloc( onsetsds_memneeded(odftypeBass, 1024, 11) );
+    
+    // Now initialise the OnsetsDS struct and its associated memory
+    onsetsds_init(&mOdsBase, odsdataBass, onsetsds_fft_types::ODS_FFT_SC3_POLAR, odftypeBass, 1024, 11, 44100.0f);
+    
     // start our timer for the damper
     timer = getCurrentTimeInMillis();
+    timerBass = getCurrentTimeInMillis();
 }
 
 
