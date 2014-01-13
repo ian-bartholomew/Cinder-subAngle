@@ -24,6 +24,7 @@ class TriangleController {
     void subdivide();
     void addTriangle(Triangle triangle);
     void clearTriangles();
+    void tap();
     
     std::list<Triangle> mTriangles;
 };

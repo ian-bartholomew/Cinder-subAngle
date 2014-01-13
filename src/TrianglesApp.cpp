@@ -4,11 +4,16 @@
 #include "cinder/audio/Output.h"
 #include "cinder/audio/FftProcessor.h"
 #include "cinder/audio/PcmBuffer.h"
+#include "cinder/params/Params.h"
 
 #include <vector>
 
 #include "Triangle.h"
 #include "TriangleController.h"
+#include "KissFFT.h"
+#include "onsetsds.h"
+
+#include "Resources.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -21,56 +26,157 @@ class TrianglesApp : public AppNative {
     void resize();
 	void update();
 	void draw();
+    void shutdown();
     
     void keyDown( KeyEvent event );
     void mouseDown( MouseEvent event );
     
     void toggleFullscreen();
     void initTriangles();
-
-    bool                    mFullScreen = false;
+    void initODF();
+    void initAudio();
+    long getCurrentTimeInMillis();
     
-    // Audio
-    audio::TrackRef         mTrack;
-	audio::PcmBuffer32fRef  mPcmBuffer;
-	uint16_t                mBandCount = 32;
+    bool                        mFullScreen = false;
+    bool                        bDrawBeat   = false;
+    bool                        bDrawParams = false;
+    bool                        isOnset     = false;
     
-    std::shared_ptr<float>  mFftRef;
+    // PARAMS
+	params::InterfaceGlRef      mParams;
+    
+    // Onset Dection
+    OnsetsDS mOds;
+    
+	// Audio file
+	ci::audio::SourceRef		mAudioSource;
+	ci::audio::PcmBuffer32fRef	mBuffer;
+	ci::audio::TrackRef			mTrack;
+    
+	// Analyzer
+	KissRef						mFft;
+    int32_t                     mDampen = 50; // time to wait between beats
+    long                        timer;
     
     // Triangles
-    TriangleController      mTriangleController;
+    TriangleController          mTriangleController;
     
 };
+
+//------------------------------------------------
+#pragma mark -
+#pragma mark lifecycle
+#pragma mark -
 
 void TrianglesApp::prepareSettings(Settings *settings)
 {
 	settings->setWindowSize( 1280, 1080 );
+    settings->enableHighDensityDisplay();
     //    settings->setFullScreen(bIsFullScreen);
     //	settings->setFrameRate( mFPS );
 }
 
 void TrianglesApp::setup()
 {
-    initTriangles();
+    mParams = params::InterfaceGl::create( "Triangles", Vec2i( 200, 310 ) );
+    mParams->addParam( "Draw beat", &bDrawBeat);
+    mParams->addParam( "Dampen", &mDampen);
+    
+    // Set up line rendering
+	gl::enable( GL_LINE_SMOOTH );
+	glHint( GL_LINE_SMOOTH_HINT, GL_NICEST );
+    
+    gl::color( ColorAf::white() );
+
+//    initTriangles();
+    
+	// Load and play audio
+	mAudioSource = audio::load( loadResource( RES_TRACK ) );
+	mTrack = audio::Output::addTrack( mAudioSource, false );
+	mTrack->enablePcmBuffering( true );
+	mTrack->play();
+    
+    initODF();
+    
+        
 }
 
 void TrianglesApp::resize()
 {
-    initTriangles();
+    initTriangles();   
 }
 
 void TrianglesApp::update()
 {
+    // Check if track is playing and has a PCM buffer available
+	if ( mTrack->isPlaying() && mTrack->isPcmBuffering() ) {
+        
+		// Get buffer
+		mBuffer = mTrack->getPcmBuffer();
+		if ( mBuffer && mBuffer->getInterleavedData() ) {
+            
+			// Get sample count
+			uint32_t sampleCount = mBuffer->getInterleavedData()->mSampleCount;
+			if ( sampleCount > 0 ) {
+                
+				// Initialize analyzer
+				if ( !mFft ) {
+					mFft = Kiss::create( sampleCount );
+				}
+                
+				// Analyze data
+				if ( mBuffer->getInterleavedData()->mData != 0 ) {
+					mFft->setData( mBuffer->getInterleavedData()->mData );
+				}
+                
+                isOnset = onsetsds_process(&mOds, mFft->getData());
+                
+			}
+            
+		}
+        
+	}
+    
+    if (isOnset && (getCurrentTimeInMillis() - timer > mDampen)){
+        mTriangleController.tap();
+        timer = getCurrentTimeInMillis();
+    } else {
+        isOnset = false;
+    }
+    
 }
 
 void TrianglesApp::draw()
 {
 	// clear out the window with black
 	gl::clear( Color( 0, 0, 0 ) );
+    gl::color( ColorAf::white() );
     
     mTriangleController.draw();
+    
+    if (isOnset && bDrawBeat) {
+        gl::color(Color(CM_RGB, 1, 0, 0 ));
+        gl::drawSolidCircle(Vec2f(20.0f, getWindowHeight() - 20.0f), 50.0f);
+    }
+    
+    if (bDrawParams)
+        mParams->draw();
 
 }
+
+void TrianglesApp::shutdown(){
+    // Stop track
+	mTrack->enablePcmBuffering( false );
+	mTrack->stop();
+	if ( mFft ) {
+		mFft->stop();
+	}
+}
+
+//------------------------------------------------
+#pragma mark -
+#pragma mark Events
+#pragma mark -
 
 void TrianglesApp::mouseDown( MouseEvent event )
 {
@@ -85,6 +191,12 @@ void TrianglesApp::keyDown(KeyEvent event){
         case KeyEvent::KEY_f:
             toggleFullscreen();
             break;
+        case KeyEvent::KEY_SPACE:
+            bDrawParams = !bDrawParams;
+            break;
+        case KeyEvent::KEY_a:
+            bDrawBeat = !bDrawBeat;
+            break;
     }
 }
 
@@ -96,6 +208,11 @@ void TrianglesApp::toggleFullscreen(){
     
     resize();
 }
+
+//------------------------------------------------
+#pragma mark -
+#pragma mark Inits
+#pragma mark -
 
 void TrianglesApp::initTriangles(){
     list<Triangle> tempTriangles;
@@ -139,6 +256,31 @@ void TrianglesApp::initTriangles(){
     mTriangleController.addTriangle(Triangle(a,b,c));
     mTriangleController.subdivide();
 
+}
+
+void TrianglesApp::initODF(){
+    // There are various types of onset detector available, we must choose one
+//    onsetsds_odf_types odftype = onsetsds_odf_types::ODS_ODF_WPHASE;  // good for bass and low end
+    onsetsds_odf_types odftype = onsetsds_odf_types::ODS_ODF_RCOMPLEX;
+    
+    // Allocate contiguous memory using malloc or whatever is reasonable.
+    // FFT size of 512 (@44.1kHz), and a median span of 11.
+    float* odsdata = (float*) malloc( onsetsds_memneeded(odftype, 1024, 11) );
+    
+    // Now initialise the OnsetsDS struct and its associated memory
+    onsetsds_init(&mOds, odsdata, onsetsds_fft_types::ODS_FFT_SC3_POLAR, odftype, 1024, 11, 44100.0f);
+    
+    // start our timer for the damper
+    timer = getCurrentTimeInMillis();
+}
+
+
+long TrianglesApp::getCurrentTimeInMillis()
+{
+    // get system time in milliseconds
+    std::chrono::time_point<std::chrono::system_clock> now = std::chrono::system_clock::now();
+    auto duration = now.time_since_epoch();
+    return std::chrono::duration_cast<std::chrono::milliseconds>(duration).count();
 }
 
 CINDER_APP_NATIVE( TrianglesApp, RendererGl )

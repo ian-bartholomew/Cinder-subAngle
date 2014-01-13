@@ -19,6 +19,14 @@ class Triangle {
 	Triangle();
     Triangle(Vec2f a, Vec2f b, Vec2f c);
     
+    void update();
+    void draw();
+    void tap();
+    bool isActive();
+    
+    std::list<Triangle> subdivide();
+    
+  private:
     ci::Vec2f a;
     ci::Vec2f b;
     ci::Vec2f c;
@@ -26,9 +34,8 @@ class Triangle {
     ci::Color mColor;
     
     float mDecay;
+    float mTresh;
     
-    void update();
-    void draw();
-    std::list<Triangle> subdivide();
+    void init();
     
 };

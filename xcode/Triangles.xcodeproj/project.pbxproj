@@ -19,6 +19,23 @@
 		98B4A6C04AB14843AE7FC3C7 /* TrianglesApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25919CEFDD9141A88A0BFF43 /* TrianglesApp.cpp */; };
 		D025F13A187D3ECF0028E1FD /* Triangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D025F139187D3ECF0028E1FD /* Triangle.cpp */; };
 		D097CE7E187E817900C5F4F3 /* TriangleController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D097CE7D187E817900C5F4F3 /* TriangleController.cpp */; };
+		D0EB917D18810D76009F6313 /* DarkWahlberg.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D0EB917C18810D76009F6313 /* DarkWahlberg.mp3 */; };
+		D0EBA42718836A4C009F6313 /* KissFFT.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0EBA40818836A4C009F6313 /* KissFFT.a */; };
+		D0EBA42818836A4C009F6313 /* KissFFT_d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0EBA40918836A4C009F6313 /* KissFFT_d.a */; };
+		D0EBA42918836A4C009F6313 /* KissFFT.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0EBA40B18836A4C009F6313 /* KissFFT.a */; };
+		D0EBA42A18836A4C009F6313 /* KissFFT_d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0EBA40C18836A4C009F6313 /* KissFFT_d.a */; };
+		D0EBA42B18836A4C009F6313 /* KissFFT.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0EBA40E18836A4C009F6313 /* KissFFT.a */; };
+		D0EBA42C18836A4C009F6313 /* KissFFT_d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0EBA40F18836A4C009F6313 /* KissFFT_d.a */; };
+		D0EBA42D18836A4C009F6313 /* KissFFT.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0EBA41118836A4C009F6313 /* KissFFT.lib */; };
+		D0EBA42E18836A4C009F6313 /* KissFFT_d.lib in Frameworks */ = {isa = PBXBuildFile; fileRef = D0EBA41218836A4C009F6313 /* KissFFT_d.lib */; };
+		D0EBA42F18836A4C009F6313 /* README in Resources */ = {isa = PBXBuildFile; fileRef = D0EBA41318836A4C009F6313 /* README */; };
+		D0EBA43018836A4C009F6313 /* kiss_fft.c in Sources */ = {isa = PBXBuildFile; fileRef = D0EBA41718836A4C009F6313 /* kiss_fft.c */; };
+		D0EBA43118836A4C009F6313 /* kiss_fftr.c in Sources */ = {isa = PBXBuildFile; fileRef = D0EBA41918836A4C009F6313 /* kiss_fftr.c */; };
+		D0EBA43218836A4C009F6313 /* KissFFT.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0EBA41B18836A4C009F6313 /* KissFFT.cpp */; };
+		D0EBA43318836A4C009F6313 /* libfftw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0EBA42018836A4C009F6313 /* libfftw3.a */; };
+		D0EBA43418836A4C009F6313 /* libfftw3f.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0EBA42118836A4C009F6313 /* libfftw3f.a */; };
+		D0EBA43518836A4C009F6313 /* onsetsds.c in Sources */ = {isa = PBXBuildFile; fileRef = D0EBA42318836A4C009F6313 /* onsetsds.c */; };
+		D0EBA43618836A4C009F6313 /* onsetsdshelpers.c in Sources */ = {isa = PBXBuildFile; fileRef = D0EBA42518836A4C009F6313 /* onsetsdshelpers.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,10 +55,36 @@
 		7EC8E5D6D10845E8A0B4F676 /* Triangles_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = "\"\""; path = Triangles_Prefix.pch; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Triangles.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Triangles.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7BA66DE07E74BF3A7D99E53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D00556A71880A34700730D08 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		D025F139187D3ECF0028E1FD /* Triangle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Triangle.cpp; path = ../src/Triangle.cpp; sourceTree = "<group>"; };
 		D025F13B187D3EF10028E1FD /* Triangle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Triangle.h; path = ../include/Triangle.h; sourceTree = "<group>"; };
 		D097CE7D187E817900C5F4F3 /* TriangleController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TriangleController.cpp; path = ../src/TriangleController.cpp; sourceTree = "<group>"; };
 		D097CE7F187E818C00C5F4F3 /* TriangleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TriangleController.h; path = ../include/TriangleController.h; sourceTree = "<group>"; };
+		D0EB917C18810D76009F6313 /* DarkWahlberg.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = DarkWahlberg.mp3; path = ../resources/DarkWahlberg.mp3; sourceTree = "<group>"; };
+		D0EB917E188116E7009F6313 /* BeatDetect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeatDetect.h; path = ../include/BeatDetect.h; sourceTree = "<group>"; };
+		D0EBA40818836A4C009F6313 /* KissFFT.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = KissFFT.a; sourceTree = "<group>"; };
+		D0EBA40918836A4C009F6313 /* KissFFT_d.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = KissFFT_d.a; sourceTree = "<group>"; };
+		D0EBA40B18836A4C009F6313 /* KissFFT.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = KissFFT.a; sourceTree = "<group>"; };
+		D0EBA40C18836A4C009F6313 /* KissFFT_d.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = KissFFT_d.a; sourceTree = "<group>"; };
+		D0EBA40E18836A4C009F6313 /* KissFFT.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = KissFFT.a; sourceTree = "<group>"; };
+		D0EBA40F18836A4C009F6313 /* KissFFT_d.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = KissFFT_d.a; sourceTree = "<group>"; };
+		D0EBA41118836A4C009F6313 /* KissFFT.lib */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = KissFFT.lib; sourceTree = "<group>"; };
+		D0EBA41218836A4C009F6313 /* KissFFT_d.lib */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = KissFFT_d.lib; sourceTree = "<group>"; };
+		D0EBA41318836A4C009F6313 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		D0EBA41618836A4C009F6313 /* _kiss_fft_guts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _kiss_fft_guts.h; sourceTree = "<group>"; };
+		D0EBA41718836A4C009F6313 /* kiss_fft.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kiss_fft.c; sourceTree = "<group>"; };
+		D0EBA41818836A4C009F6313 /* kiss_fft.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kiss_fft.h; sourceTree = "<group>"; };
+		D0EBA41918836A4C009F6313 /* kiss_fftr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = kiss_fftr.c; sourceTree = "<group>"; };
+		D0EBA41A18836A4C009F6313 /* kiss_fftr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = kiss_fftr.h; sourceTree = "<group>"; };
+		D0EBA41B18836A4C009F6313 /* KissFFT.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KissFFT.cpp; sourceTree = "<group>"; };
+		D0EBA41C18836A4C009F6313 /* KissFFT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KissFFT.h; sourceTree = "<group>"; };
+		D0EBA41F18836A4C009F6313 /* fftw3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fftw3.h; sourceTree = "<group>"; };
+		D0EBA42018836A4C009F6313 /* libfftw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfftw3.a; sourceTree = "<group>"; };
+		D0EBA42118836A4C009F6313 /* libfftw3f.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libfftw3f.a; sourceTree = "<group>"; };
+		D0EBA42318836A4C009F6313 /* onsetsds.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = onsetsds.c; sourceTree = "<group>"; };
+		D0EBA42418836A4C009F6313 /* onsetsds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = onsetsds.h; sourceTree = "<group>"; };
+		D0EBA42518836A4C009F6313 /* onsetsdshelpers.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = onsetsdshelpers.c; sourceTree = "<group>"; };
+		D0EBA42618836A4C009F6313 /* onsetsdshelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = onsetsdshelpers.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,13 +93,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				D0EBA42C18836A4C009F6313 /* KissFFT_d.a in Frameworks */,
+				D0EBA42818836A4C009F6313 /* KissFFT_d.a in Frameworks */,
 				0091D8F90E81B9330029341E /* OpenGL.framework in Frameworks */,
+				D0EBA42A18836A4C009F6313 /* KissFFT_d.a in Frameworks */,
+				D0EBA42718836A4C009F6313 /* KissFFT.a in Frameworks */,
 				5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */,
 				5323E6B60EAFCA7E003A9687 /* QTKit.framework in Frameworks */,
 				00B784B30FF439BC000DE1D7 /* Accelerate.framework in Frameworks */,
 				00B784B40FF439BC000DE1D7 /* AudioToolbox.framework in Frameworks */,
+				D0EBA42918836A4C009F6313 /* KissFFT.a in Frameworks */,
+				D0EBA43418836A4C009F6313 /* libfftw3f.a in Frameworks */,
 				00B784B50FF439BC000DE1D7 /* AudioUnit.framework in Frameworks */,
+				D0EBA42D18836A4C009F6313 /* KissFFT.lib in Frameworks */,
 				00B784B60FF439BC000DE1D7 /* CoreAudio.framework in Frameworks */,
+				D0EBA43318836A4C009F6313 /* libfftw3.a in Frameworks */,
+				D0EBA42B18836A4C009F6313 /* KissFFT.a in Frameworks */,
+				D0EBA42E18836A4C009F6313 /* KissFFT_d.lib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +119,8 @@
 		01B97315FEAEA392516A2CEA /* Blocks */ = {
 			isa = PBXGroup;
 			children = (
+				D0EBA40518836A4C009F6313 /* Cinder-KissFft */,
+				D0EBA41D18836A4C009F6313 /* onsetds */,
 			);
 			name = Blocks;
 			sourceTree = "<group>";
@@ -132,6 +187,7 @@
 				7EC8E5D6D10845E8A0B4F676 /* Triangles_Prefix.pch */,
 				D025F13B187D3EF10028E1FD /* Triangle.h */,
 				D097CE7F187E818C00C5F4F3 /* TriangleController.h */,
+				D0EB917E188116E7009F6313 /* BeatDetect.h */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -139,6 +195,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D0EB917C18810D76009F6313 /* DarkWahlberg.mp3 */,
 				1D3469EE48224FBC84427B4D /* CinderApp.icns */,
 				A7BA66DE07E74BF3A7D99E53 /* Info.plist */,
 			);
@@ -149,9 +206,121 @@
 			isa = PBXGroup;
 			children = (
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				D00556A71880A34700730D08 /* XCTest.framework */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D0EBA40518836A4C009F6313 /* Cinder-KissFft */ = {
+			isa = PBXGroup;
+			children = (
+				D0EBA40618836A4C009F6313 /* lib */,
+				D0EBA41318836A4C009F6313 /* README */,
+				D0EBA41418836A4C009F6313 /* src */,
+			);
+			name = "Cinder-KissFft";
+			path = "../blocks/Cinder-KissFft";
+			sourceTree = "<group>";
+		};
+		D0EBA40618836A4C009F6313 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				D0EBA40718836A4C009F6313 /* ios */,
+				D0EBA40A18836A4C009F6313 /* ios-sim */,
+				D0EBA40D18836A4C009F6313 /* macosx */,
+				D0EBA41018836A4C009F6313 /* msw */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		D0EBA40718836A4C009F6313 /* ios */ = {
+			isa = PBXGroup;
+			children = (
+				D0EBA40818836A4C009F6313 /* KissFFT.a */,
+				D0EBA40918836A4C009F6313 /* KissFFT_d.a */,
+			);
+			path = ios;
+			sourceTree = "<group>";
+		};
+		D0EBA40A18836A4C009F6313 /* ios-sim */ = {
+			isa = PBXGroup;
+			children = (
+				D0EBA40B18836A4C009F6313 /* KissFFT.a */,
+				D0EBA40C18836A4C009F6313 /* KissFFT_d.a */,
+			);
+			path = "ios-sim";
+			sourceTree = "<group>";
+		};
+		D0EBA40D18836A4C009F6313 /* macosx */ = {
+			isa = PBXGroup;
+			children = (
+				D0EBA40E18836A4C009F6313 /* KissFFT.a */,
+				D0EBA40F18836A4C009F6313 /* KissFFT_d.a */,
+			);
+			path = macosx;
+			sourceTree = "<group>";
+		};
+		D0EBA41018836A4C009F6313 /* msw */ = {
+			isa = PBXGroup;
+			children = (
+				D0EBA41118836A4C009F6313 /* KissFFT.lib */,
+				D0EBA41218836A4C009F6313 /* KissFFT_d.lib */,
+			);
+			path = msw;
+			sourceTree = "<group>";
+		};
+		D0EBA41418836A4C009F6313 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				D0EBA41518836A4C009F6313 /* kiss */,
+				D0EBA41B18836A4C009F6313 /* KissFFT.cpp */,
+				D0EBA41C18836A4C009F6313 /* KissFFT.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		D0EBA41518836A4C009F6313 /* kiss */ = {
+			isa = PBXGroup;
+			children = (
+				D0EBA41618836A4C009F6313 /* _kiss_fft_guts.h */,
+				D0EBA41718836A4C009F6313 /* kiss_fft.c */,
+				D0EBA41818836A4C009F6313 /* kiss_fft.h */,
+				D0EBA41918836A4C009F6313 /* kiss_fftr.c */,
+				D0EBA41A18836A4C009F6313 /* kiss_fftr.h */,
+			);
+			path = kiss;
+			sourceTree = "<group>";
+		};
+		D0EBA41D18836A4C009F6313 /* onsetds */ = {
+			isa = PBXGroup;
+			children = (
+				D0EBA41E18836A4C009F6313 /* lib */,
+				D0EBA42218836A4C009F6313 /* src */,
+			);
+			name = onsetds;
+			path = ../blocks/onsetds;
+			sourceTree = "<group>";
+		};
+		D0EBA41E18836A4C009F6313 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				D0EBA41F18836A4C009F6313 /* fftw3.h */,
+				D0EBA42018836A4C009F6313 /* libfftw3.a */,
+				D0EBA42118836A4C009F6313 /* libfftw3f.a */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		D0EBA42218836A4C009F6313 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				D0EBA42318836A4C009F6313 /* onsetsds.c */,
+				D0EBA42418836A4C009F6313 /* onsetsds.h */,
+				D0EBA42518836A4C009F6313 /* onsetsdshelpers.c */,
+				D0EBA42618836A4C009F6313 /* onsetsdshelpers.h */,
+			);
+			path = src;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,6 +349,9 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Triangles" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -189,6 +361,7 @@
 				Japanese,
 				French,
 				German,
+				en,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Triangles */;
 			projectDirPath = "";
@@ -204,6 +377,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0EBA42F18836A4C009F6313 /* README in Resources */,
+				D0EB917D18810D76009F6313 /* DarkWahlberg.mp3 in Resources */,
 				336FC33739C9499F82F82CB6 /* CinderApp.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -215,6 +390,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0EBA43618836A4C009F6313 /* onsetsdshelpers.c in Sources */,
+				D0EBA43218836A4C009F6313 /* KissFFT.cpp in Sources */,
+				D0EBA43518836A4C009F6313 /* onsetsds.c in Sources */,
+				D0EBA43018836A4C009F6313 /* kiss_fft.c in Sources */,
+				D0EBA43118836A4C009F6313 /* kiss_fftr.c in Sources */,
 				98B4A6C04AB14843AE7FC3C7 /* TrianglesApp.cpp in Sources */,
 				D025F13A187D3ECF0028E1FD /* Triangle.cpp in Sources */,
 				D097CE7E187E817900C5F4F3 /* TriangleController.cpp in Sources */,
@@ -242,6 +422,14 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/ibartholomew/Dev/cinder/usr/scratch/Triangles/blocks/Cinder-KissFft/lib/ios",
+					"/Users/ibartholomew/Dev/cinder/usr/scratch/Triangles/blocks/Cinder-KissFft/lib/ios-sim",
+					"/Users/ibartholomew/Dev/cinder/usr/scratch/Triangles/blocks/Cinder-KissFft/lib/macosx",
+					"/Users/ibartholomew/Dev/cinder/usr/scratch/Triangles/blocks/Cinder-KissFft/lib/msw",
+					/Users/ibartholomew/Dev/cinder/usr/scratch/Triangles/blocks/onsetds/lib,
+				);
 				OTHER_LDFLAGS = "\"$(CINDER_PATH)/lib/libcinder_d.a\"";
 				PRODUCT_NAME = Triangles;
 				SYMROOT = ./build;
@@ -264,6 +452,14 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/ibartholomew/Dev/cinder/usr/scratch/Triangles/blocks/Cinder-KissFft/lib/ios",
+					"/Users/ibartholomew/Dev/cinder/usr/scratch/Triangles/blocks/Cinder-KissFft/lib/ios-sim",
+					"/Users/ibartholomew/Dev/cinder/usr/scratch/Triangles/blocks/Cinder-KissFft/lib/macosx",
+					"/Users/ibartholomew/Dev/cinder/usr/scratch/Triangles/blocks/Cinder-KissFft/lib/msw",
+					/Users/ibartholomew/Dev/cinder/usr/scratch/Triangles/blocks/onsetds/lib,
+				);
 				OTHER_LDFLAGS = "\"$(CINDER_PATH)/lib/libcinder.a\"";
 				PRODUCT_NAME = Triangles;
 				STRIP_INSTALLED_PRODUCT = YES;
@@ -276,7 +472,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = i386;
 				CINDER_PATH = ../../../../lib/cinder_0.8.5_mac;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -284,6 +479,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/boost\"";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include";
 			};
@@ -293,7 +489,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = i386;
 				CINDER_PATH = ../../../../lib/cinder_0.8.5_mac;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_CXX_LIBRARY = "libc++";

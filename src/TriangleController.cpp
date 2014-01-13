@@ -1,4 +1,4 @@
-//
+            //
 //  TriangleController.cpp
 //  Triangles
 //
@@ -8,6 +8,8 @@
 
 #include "TriangleController.h"
 #include "cinder/app/AppBasic.h"
+
+#include "cinder/Rand.h"
 
 TriangleController::TriangleController(){}
 
@@ -47,4 +49,17 @@ void TriangleController::addTriangle(Triangle triangle){
 
 void TriangleController::clearTriangles(){
     mTriangles.clear();
+}
+
+void TriangleController::tap(){
+    
+    uint16_t randTriangle = Rand::randInt(0, mTriangles.size() - 1);
+        console() << "--- tapping " << randTriangle << endl;
+    if (mTriangles.size() > randTriangle)
+    {
+        std::list<Triangle>::iterator it = std::next(mTriangles.begin(), randTriangle);
+        it->tap();
+    }
+
+    
 }

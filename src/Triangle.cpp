@@ -12,8 +12,7 @@
 #include "cinder/Rand.h"
 
 Triangle::Triangle(){
-    mColor = Color(1,1,1);
-    mDecay	= 0.99f;
+    init();
 }
 
 Triangle::Triangle(Vec2f _a, Vec2f _b, Vec2f _c) {
@@ -21,12 +20,20 @@ Triangle::Triangle(Vec2f _a, Vec2f _b, Vec2f _c) {
     b       = _b;
     c       = _c;
     
-    mColor  = Color(Rand::randFloat(0,1), Rand::randFloat(0,1), Rand::randFloat(0,1));
+    init();
+}
+
+void Triangle::init(){
+    mColor = hsvToRGB(Vec3f(Rand::randFloat(0,1), Rand::randFloat(0,1), 0.0f));
     mDecay	= 0.99f;
-    
+    mTresh = 0.45f;
 }
 
 void Triangle::draw() {
+    Vec3f hsv = cinder::rgbToHSV(mColor);
+    
+    mColor = Color(CM_HSV, hsv.x, hsv.y, hsv.z * mDecay);
+    
 	glColor4f( mColor );
 //    glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
     
@@ -54,4 +61,14 @@ std::list<Triangle> Triangle::subdivide() {
     rval.push_back( Triangle(a1, b1, c1) );
     
     return rval;
+}
+
+void Triangle::tap(){
+    Vec3f hsv = cinder::rgbToHSV(mColor);
+    mColor = hsvToRGB(Vec3f(hsv.x, hsv.y, 1.0f));
+}
+
+bool Triangle::isActive(){
+    Vec3f hsv = cinder::rgbToHSV(mColor);
+    return hsv.y > mTresh;
 }
